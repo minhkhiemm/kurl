@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>kURL - REST API Testing Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Search Modal -->
+<div class="search-modal" id="searchModal">
+  <div class="search-modal-content">
+    <div class="search-input-container">
+      <input type="text" class="search-input" id="searchInput"
+             placeholder="Search by METHOD resource or paste a curl command...">
+    </div>
+    <div class="search-results" id="searchResults"></div>
+    <div class="search-hint">
+      <kbd>↑</kbd> <kbd>↓</kbd> to navigate •
+      <kbd>Enter</kbd> to select • <kbd>Esc</kbd> to close
+    </div>
+  </div>
+</div>
+
+<!-- Shortcuts Modal -->
+<div class="shortcuts-modal" id="shortcutsModal">
+  <div class="shortcuts-modal-content">
+    <div class="shortcuts-modal-header">
+      <span class="shortcuts-modal-title">Keyboard Shortcuts</span>
+      <button class="shortcuts-modal-close" id="shortcutsModalClose">✕</button>
+    </div>
+    <table class="shortcuts-table">
+      <tbody>
+        <tr><td><kbd>⌘</kbd><kbd>S</kbd></td><td>Save current request</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>N</kbd></td><td>New request (hover a folder to save there)</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>D</kbd></td><td>Delete current request</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>E</kbd></td><td>Rename current request</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>C</kbd></td><td>Copy request as cURL</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>P</kbd></td><td>Export collection</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>I</kbd></td><td>Import collection</td></tr>
+        <tr><td><kbd>⌘</kbd><kbd>Z</kbd></td><td>Undo last action (delete / save)</td></tr>
+        <tr><td><kbd>?</kbd></td><td>Show this shortcuts list</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Export Modal -->
+<div class="export-modal" id="exportModal">
+  <div class="export-modal-content">
+    <div class="export-modal-header">
+      <span class="export-modal-title">Export Collection</span>
+      <button class="export-modal-close" id="exportModalClose">✕</button>
+    </div>
+    <textarea class="export-textarea" id="exportContent" readonly></textarea>
+    <button class="btn-primary export-copy-btn" id="exportCopyBtn">Copy to Clipboard</button>
+  </div>
+</div>
+
+<!-- Import Modal -->
+<div class="export-modal" id="importModal">
+  <div class="export-modal-content">
+    <div class="export-modal-header">
+      <span class="export-modal-title">Import Collection</span>
+      <button class="export-modal-close" id="importModalClose">✕</button>
+    </div>
+    <textarea class="export-textarea" id="importContent" placeholder="# Collection Name
+- Folder Name
++ Request Name: curl 'https://...' -X POST -H 'Content-Type: application/json' -d '{}'
++ Another Request: curl 'https://...'
+- Another Folder
++ My Request: curl 'https://...'"></textarea>
+    <button class="btn-primary export-copy-btn" id="importBtn">Import</button>
+  </div>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>kURL</h1>
+  </div>
+
+  <div class="main-content">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar"></div>
+
+    <!-- Workspace -->
+    <div class="workspace">
+      <!-- Request Builder -->
+      <div class="request-builder" id="requestBuilder"></div>
+
+      <!-- Drag Resizer -->
+      <div class="resizer" id="resizer">
+        <div class="resizer-handle"><span></span></div>
+      </div>
+
+      <!-- Response Section -->
+      <div class="response-section" id="responseSection"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
